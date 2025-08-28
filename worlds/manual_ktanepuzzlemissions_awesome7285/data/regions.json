@@ -1,0 +1,8 @@
+{
+    "1.1": {
+        "connects_to": ["1.2", "2.1"],
+        "requires": "|Masyu| AND |Tents| AND |Aquarium|",
+        "starting": true
+    }
+    
+}

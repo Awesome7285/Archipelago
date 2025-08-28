@@ -1,0 +1,121 @@
+{
+  "Grass Mountain": {
+    "starting": true,
+    "connects_to": [],
+    "requires": []
+  },
+  "Abandoned Tower": {
+    "starting": true,
+    "connects_to": [],
+    "requires": []
+  },
+  "Deep Deep Ocean": {
+    "connects_to": [],
+    "requires": "|Star:3|"
+  },
+  "Snowy Islands": {
+    "connects_to": [],
+    "requires": "|Star:3|"
+  },
+  "Deadly Mining Caves": {
+    "connects_to": [],
+    "requires": "|Star:3|"
+  },
+  "Boss Stage 1": {
+    "connects_to": [],
+    "requires": "|Star:10|"
+  },
+  "Dry Dry Desert": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:3|"
+  },
+  "Haunted Mansion": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:3|"
+  },
+  "Volcano Lava Sea": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:3|"
+  },
+  "Boss Stage 2": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:25|"
+  },
+  "Water Pipeline": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:25|"
+  },
+  "Lava Boots Stage": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:40| AND |Lava Boots Power-Up|"
+  },
+  "Jump Stage": {
+    "connects_to": [],
+    "requires": "|Key 1| AND |Star:25| AND |Jump Power-Up|"
+  },
+  "Water Bonus Stage": {
+    "connects_to": [],
+    "requires": "|Star:3|"
+  },
+  "Frozen Fire Funland": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:10|"
+  },
+  "Funky Twisting Techno": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:10|"
+  },
+  "Mungle Jungle Rumble": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:10|"
+  },
+  "Cashed Up Cave": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:10|"
+  },
+  "Rainbow Madness": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:10|"
+  },
+  "Expert Stage": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:10|"
+  },
+  "The Final Showdown": {
+    "connects_to": [
+      "Boss Stage 3"
+    ],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:50|"
+  },
+  "Boss Stage 3": {
+    "connects_to": [],
+    "requires": "|Key 2| AND |Jump Power-Up| AND |Star:50|"
+  },
+  "Overworld": {
+    "starting": true,
+    "connects_to": [
+      "Grass Mountain",
+      "Abandoned Tower",
+      "Deep Deep Ocean",
+      "Snowy Islands",
+      "Deadly Mining Caves",
+      "Boss Stage 1",
+      "Dry Dry Desert",
+      "Haunted Mansion",
+      "Volcano Lava Sea",
+      "Boss Stage 2",
+      "Water Pipeline",
+      "Lava Boots Stage",
+      "Jump Stage",
+      "Water Bonus Stage",
+      "Frozen Fire Funland",
+      "Funky Twisting Techno",
+      "Mungle Jungle Rumble",
+      "Cashed Up Cave",
+      "Rainbow Madness",
+      "Expert Stage",
+      "The Final Showdown"
+    ],
+    "requires": []
+  }
+}

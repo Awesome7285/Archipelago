@@ -1,0 +1,9 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
+  "game": "World's Hardest Game",
+  "creator": "Awesome7285",
+  "filler_item_name": "Filler",
+  "starting_items": [
+    
+  ]
+}

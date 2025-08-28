@@ -1,0 +1,32 @@
+{
+	"Reimu-Early-Game":
+	{
+		"connects_to": [],
+		"requires": "|Reimu - Scarlet Devil| OR |Reimu - Creature Red| OR |Reimu - Snow Blossom| OR |Reimu - Blue Season| OR |Reimu - Yellow Subterranean| OR |Reimu - Imperishable Moon| OR |Reimu - Beast Hardiness| OR |Reimu - Shintoism Wind|"
+	},
+	"Reimu-Mid-Game":
+	{
+		"connects_to": [],
+		"requires": "|Reimu - Scarlet Devil| OR |Reimu - Creature Red| OR |Reimu - Snow Blossom| OR |Reimu - Blue Season| OR |Reimu - Yellow Subterranean| OR |Reimu - Imperishable Moon| OR |Reimu - Beast Hardiness| OR |Reimu - Shintoism Wind|"
+	},
+	"Reimu-End-Game":
+	{
+		"connects_to": [],
+		"requires": "|Reimu - Scarlet Devil| OR |Reimu - Creature Red| OR |Reimu - Snow Blossom| OR |Reimu - Blue Season| OR |Reimu - Yellow Subterranean| OR |Reimu - Imperishable Moon| OR |Reimu - Beast Hardiness| OR |Reimu - Shintoism Wind|"
+	},
+	"Marisa-Early-Game":
+	{
+		"connects_to": [],
+		"requires": "|Marisa - Scarlet Devil| OR |Marisa - Creature Red| OR |Marisa - Snow Blossom| OR |Marisa - Blue Season| OR |Marisa - Yellow Subterranean| OR |Marisa - Imperishable Moon| OR |Marisa - Beast Hardiness| OR |Marisa - Shintoism Wind|"
+	},
+	"Marisa-Mid-Game":
+	{
+		"connects_to": [],
+		"requires": "|Marisa - Scarlet Devil| OR |Marisa - Creature Red| OR |Marisa - Snow Blossom| OR |Marisa - Blue Season| OR |Marisa - Yellow Subterranean| OR |Marisa - Imperishable Moon| OR |Marisa - Beast Hardiness| OR |Marisa - Shintoism Wind|"
+	},
+	"Marisa-End-Game":
+	{
+		"connects_to": [],
+		"requires": "|Marisa - Scarlet Devil| OR |Marisa - Creature Red| OR |Marisa - Snow Blossom| OR |Marisa - Blue Season| OR |Marisa - Yellow Subterranean| OR |Marisa - Imperishable Moon| OR |Marisa - Beast Hardiness| OR |Marisa - Shintoism Wind|"
+	}
+}

@@ -1,0 +1,3 @@
+obj_controller.key      0 or 1 (same key for jungle and maze) obj_key
+obj_controller.jump     0 or 2 obj_double_switch
+obj_controller.hose     0 or 1 obj_hose, also sets lvl21 to true

@@ -1,0 +1,146 @@
+{
+    "1.1": {
+        "connects_to": [],
+        "requires": "|Caesar Cipher| AND |LED Grid| AND |The Bulb|"
+    },
+    "1.2": {
+        "connects_to": [],
+        "requires": "|Tipping Triangles| AND |Green Arrows| AND |Caesar Cipher| AND |LED Grid| AND |The Bulb| AND |Colored Squares|"
+    },
+    "1.3": {
+        "connects_to": [],
+        "requires": "|Colored Squares| AND |LED Grid| AND |Giant's Drink| AND |Encrypted Dice| AND |Tipping Triangles| AND |Backgrounds| AND |Round Keypad|"
+    },
+    "1.4": {
+        "connects_to": [],
+        "requires": "|Giant's Drink| AND |Encrypted Dice| AND |The Bulb| AND |Backgrounds| AND |Colored Squares| AND |Green Arrows|"
+    },
+    "1.5": {
+        "connects_to": [],
+        "requires": "|Round Keypad| AND |Encrypted Dice| AND |The Digit| AND |Ars Goetia Identification| AND |Backgrounds| AND |Giant's Drink| AND |The Bulb| AND |Colored Squares| AND |Tipping Triangles| AND |LED Grid| AND |Green Arrows|"
+    },
+    "1.6": {
+        "connects_to": [],
+        "requires": "|Ars Goetia Identification| AND |Maze Scrambler| AND |Backgrounds| AND |Simon States| AND |Skinny Wires| AND |Backgrounds| AND |Encrypted Dice| AND |Colored Squares| AND |Green Arrows| AND |The Digit| AND |Caesar Cipher| AND |Giant's Drink| AND |Round Keypad| AND |LED Grid| AND |The Bulb|"
+    },
+    "1.7": {
+        "connects_to": [],
+        "requires": "|The Digit| AND |Skinny Wires| AND |Simon States| AND |Flashing Lights| AND |Widdershins| AND |Battleship| AND |Green Arrows| AND |Backgrounds| AND |Skinny Wires| AND |Tipping Triangles| AND |The Bulb| AND |Giant's Drink|"
+    },
+    "1.8": {
+        "connects_to": [],
+        "requires": "|Widdershins| AND |Light Cycle| AND |Flashing Lights| AND |Green Arrows| AND |Battleship| AND |Maze Scrambler| AND |Backgrounds| AND |Skinny Wires| AND |The Digit| AND |Backgrounds| AND |Caesar Cipher| AND |Giant's Drink| AND |Ars Goetia Identification|"
+    },
+    "1.9": {
+        "connects_to": [],
+        "requires": "|Decolored Squares| AND |Crazy Talk| AND |Encrypted Dice| AND |Light Cycle| AND |Tipping Triangles| AND |Widdershins| AND |Skinny Wires| AND |Green Arrows| AND |Colored Squares| AND |The Digit| AND |Caesar Cipher| AND |Giant's Drink| AND |Round Keypad|"
+    },
+    "1.10": {
+        "connects_to": [],
+        "requires": "|Encrypted Dice| AND |Battleship| AND |Light Cycle| AND |Maze Scrambler| AND |Simon States| AND |Decolored Squares| AND |Colored Squares| AND |LED Grid| AND |Flashing Lights| AND |Backgrounds| AND |Caesar Cipher| AND |The Bulb| AND |Widdershins| AND |Skinny Wires| AND |Green Arrows|"
+    },
+    "2.1": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |egg| AND |Digital Root| AND |Four Lights|"
+    },
+    "2.2": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |Countdown| AND |amogus| AND |Words| AND |Safety Square| AND |Switches| AND |Digital Root|"
+    },
+    "2.3": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |A Mistake| AND |Switches| AND |Vigenere Cipher| AND |LED Math| AND |Countdown| AND |Safety Square| AND |egg| AND |amogus|"
+    },
+    "2.4": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |Shapes and Colors| AND |Masyu| AND |S.E.T| AND |Polygons| AND |White Arrows| AND |Logic| AND |Switches|"
+    },
+    "2.5": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |24| AND |Art Appreciation| AND |Light Bulbs| AND |Snatcher's Map| AND |Light Cycle| AND |The Digit| AND |egg| AND |amogus| AND |Vigenere Cipher| AND |LED Math|"
+    },
+    "2.6": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |The Witness| AND |Standard Crazy Talk| AND |Color-Cycle Button| AND |Audio Morse| AND |One-Line| AND |White Arrows| AND |Shapes and Colors| AND |Switches| AND |S.E.T|"
+    },
+    "2.7": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |Binary Puzzle| AND |Mazery| AND |Tell Me When| AND |Laundry| AND |Shapes and Colors| AND |Audio Morse| AND |Snatcher's Map| AND |24| AND |The Witness| AND |Standard Crazy Talk|"
+    },
+    "2.8": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |English Test| AND |Cosmic| AND |The Funny Number| AND |1000 Words| AND |Mad Memory| AND |S.E.T| AND |Laundry| AND |Countdown| AND |Snatcher's Map| AND |The Digit| AND |Plant Identification| AND |Pickup Identification|"
+    },
+    "2.9": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |Minesweeper| AND |Setting Charges| AND |The Labyrinth| AND |Not Maze| AND |Vigenere Cipher| AND |Snatcher's Map| AND |Shapes and Colors| AND |Countdown| AND |24|"
+    },
+    "2.10": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |TetraVex| AND |Loopover| AND |Spelling Bee| AND |Discolored Squares| AND |Blind Alley| AND |A Mistake| AND |Colored Squares| AND |Decolored Squares| AND |Tipping Triangles| AND |Widdershins| AND |Maze Scrambler|"
+    },
+    "2.11": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |Rain| AND |Bone Apple Tea| AND |Beans| AND |The Labyrinth| AND |Teardrop| AND |Binary Puzzle| AND |LED Math| AND |Shapes and Colors| AND |Mazery| AND |Cosmic| AND |Widdershins| AND |Backgrounds| AND |Simon's Star| AND |Not Maze| AND |Light Bulbs|"
+    },
+    "2.12": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:11| AND |Simon's Star| AND |LEDs| AND |1000 Words| AND |Mazery| AND |Mad Memory| AND |TetraVex| AND |Binary Puzzle| AND |Laundry| AND |Mazery| AND |The Labyrinth| AND |Colored Squares| AND |Decolored Squares| AND |Discolored Squares| AND |Countdown| AND |24| AND |Setting Charges| AND |Shapes and Colors| AND |Battleship| AND |Vigenere Cipher| AND |Teardrop| AND |Four Elements| AND |TetraVex|"
+    },
+    "3.1": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Divided Squares| AND |BoozleTalk| AND |Chess| AND |Listening| AND |State of Aggregation| AND |Light Bulbs|"
+    },
+    "3.2": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Black Hole| AND |Stars| AND |Factoring| AND |Fitting In| AND |Colour Flash| AND |Listening| AND |Chess| AND |Boolean Venn Diagram|"
+    },
+    "3.3": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Black Hole| AND |Boolean Venn Diagram| AND |Calendar| AND |64|"
+    },
+    "3.4": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Black Hole| AND |The Simpleton|"
+    },
+    "3.5": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Black Hole| AND |Laundry| AND |Ingredients| AND |Plumbing| AND |Retirement| AND |64| AND |Calendar|"
+    },
+    "3.6": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Black Hole| AND |Emoticon Math| AND |Subways| AND |Gridlock| AND |KayMazey Talk| AND |Double-Oh| AND |Bartending| AND |Laundry| AND |Plumbing|"
+    },
+    "3.7": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Black Hole| AND |Retirement| AND |3D Maze| AND |USA Maze| AND |Purgatory| AND |Judgement| AND |64| AND |Chess| AND |Listening| AND |Crazy Talk| AND |Emoticon Math|"
+    },
+    "3.8": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Divided Squares| AND |Black Hole| AND |Crazy Talk| AND |Game Of Life Simple| AND |Perspective Pegs| AND |Laundry|"
+    },
+    "3.9": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Divided Squares| AND |Black Hole| AND |Kudosudoku| AND |Braille| AND |Mischmodul| AND |Simon Screams| AND |Laundry| AND |Boolean Venn Diagram| AND |Logic|"  
+    },
+    "3.10": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Souvenir| AND |Simon States| AND |3D Maze| AND |Gridlock| AND |Listening| AND |Audio Morse| AND |Simon Screams| AND |Colored Squares| AND |Decolored Squares| AND |Discolored Squares|"
+    },
+    "3.11": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Fast Math| AND |Mischmodul| AND |Simon Screams| AND |64| AND |24| AND |Countdown| AND |Uncolored Squares|"
+    },
+    "3.12": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Divided Squares| AND |Calendar| AND |European Travel| AND |LED Grid| AND |Module Maze| AND |Subways| AND |Emoji Math| AND |Colored Squares| AND |Listening| AND |Follow the Leader| AND |Battleship|"
+    },
+    "3.13": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:23| AND |Souvenir| AND |Black Hole| AND |Divided Squares| AND |Laundry| AND |TetraVex| AND |Gridlock| AND |3D Maze| AND |Ingredients| AND |Kudosudoku| AND |Simon Screams| AND |Boolean Venn Diagram| AND |Plumbing| AND |State of Aggregation| AND |Light Bulbs| AND |BoozleTalk| AND |Chess| AND |Colored Squares| AND |Decolored Squares| AND |Discolored Squares| AND |Uncolored Squares|"
+    },
+    "Easy Challenge": {
+        "connects_to": [],
+        "requires": "|Bomb Fragment:47| AND |Art Appreciation| AND |Backgrounds| AND |Battleship| AND |Big Circle| AND |Bone Apple Tea| AND |The Bulb| AND |Calendar| AND |The Code| AND |The Colored Maze| AND |Colored Squares| AND |Colour Flash| AND |Crazy Talk| AND |Digital Root| AND |Divided Squares| AND |egg| AND |Emoji Math| AND |European Travel| AND |Follow the Leader| AND |Giant's Drink| AND |Green Arrows| AND |Instructions| AND |The Jukebox| AND |LED Grid| AND |Listening| AND |Module Maze| AND |Modulo| AND |N&Ms| AND |Not the Button| AND |Perspective Pegs| AND |Poetry| AND |Purple Arrows| AND |Round Keypad| AND |Shape Shift| AND |Simon States| AND |The Simpleton| AND |Sink| AND |Spinning Buttons| AND |Subways| AND |Switches| AND |Symbolic Password| AND |Text Field| AND |USA Maze| AND |Wire Placement| AND |Word Search|"
+    }
+}

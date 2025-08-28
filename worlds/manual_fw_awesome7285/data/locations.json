@@ -1,0 +1,274 @@
+[
+	{
+		"name": "[Reimu] Ubame - Midboss",
+		"region": "Reimu-Early-Game",
+		"category": ["Reimu - Stage 1"],
+		"requires": []
+	},
+	{
+		"name": "[Reimu] Ubame Defeated",
+		"region": "Reimu-Early-Game",
+		"category": ["Reimu - Stage 1"],
+		"requires": []
+	},
+	{
+		"name": "[Reimu] Stage 1 Clear",
+		"region": "Reimu-Early-Game",
+		"category": ["Reimu - Stage 1"],
+		"requires": []
+	},
+	{
+		"name": "[Reimu] Chimi - MidBoss",
+		"region": "Reimu-Early-Game",
+		"category": ["Reimu - Stage 2"],
+		"requires": "|Stage 2|"
+	},
+	{
+		"name": "[Reimu] Chimi Defeated",
+		"region": "Reimu-Early-Game",
+		"category": ["Reimu - Stage 2"],
+		"requires": "|Stage 2|"
+	},
+	{
+		"name": "[Reimu] Stage 2 Clear",
+		"region": "Reimu-Early-Game",
+		"category": ["Reimu - Stage 2"],
+		"requires": "|Stage 2|"
+	},
+	{
+		"name": "[Reimu] Nareko Reached",
+		"region": "Reimu-Mid-Game",
+		"category": ["Reimu - Stage 3"],
+		"requires": "|Stage 3|"
+	},
+	{
+		"name": "[Reimu] Nareko Defeated",
+		"region": "Reimu-Mid-Game",
+		"category": ["Reimu - Stage 3"],
+		"requires": "|Stage 3|"
+	},
+	{
+		"name": "[Reimu] Stage 3 Clear",
+		"region": "Reimu-Mid-Game",
+		"category": ["Reimu - Stage 3"],
+		"requires": "|Stage 3|"
+	},
+	{
+		"name": "[Reimu] Wonder Stone - Midboss 1",
+		"region": "Reimu-Mid-Game",
+		"category": ["Reimu - Stage 4"],
+		"requires": "|Stage 4|"
+	},
+	{
+		"name": "[Reimu] Yuiman Defeated",
+		"region": "Reimu-Mid-Game",
+		"category": ["Reimu - Stage 4"],
+		"requires": "|Stage 4|"
+	},
+	{
+		"name": "[Reimu] Stage 4 Clear",
+		"region": "Reimu-Mid-Game",
+		"category": ["Reimu - Stage 4"],
+		"requires": "|Stage 4|"
+	},
+	{
+		"name": "[Reimu] Wonder Stone - Midboss 2",
+		"region": "Reimu-End-Game",
+		"category": ["Reimu - Stage 5"],
+		"requires": "|Stage 5|"
+	},
+	{
+		"name": "[Reimu] Toyohime Defeated",
+		"region": "Reimu-End-Game",
+		"category": ["Reimu - Stage 5"],
+		"requires": "|Stage 5|"
+	},
+	{
+		"name": "[Reimu] Stage 5 Clear",
+		"region": "Reimu-End-Game",
+		"category": ["Reimu - Stage 5"],
+		"requires": "|Stage 5|"
+	},
+	{
+		"name": "[Reimu] Ariya Reached",
+		"region": "Reimu-End-Game",
+		"category": ["Reimu - Stage 6"],
+		"requires": "|Stage 6|"
+	},
+	{
+		"name": "[Reimu] Ariya Defeated",
+		"region": "Reimu-End-Game",
+		"category": ["Reimu - Stage 6"],
+		"requires": "|Stage 6|",
+		"place_item": ["Ending"]
+	},
+	{
+		"name": "[Reimu] Stage 6 Clear",
+		"region": "Reimu-End-Game",
+		"category": ["Reimu - Stage 6"],
+		"requires": "|Stage 6|"
+	},
+
+	{
+		"name": "[Reimu] Red Incident Enemy Defeated",
+		"category": ["Reimu - Incident Enemies"],
+		"requires": "|Reimu - Scarlet Devil| OR |Reimu - Creature Red|"
+	},
+	{
+		"name": "[Reimu] Blue Incident Enemy Defeated",
+		"category": ["Reimu - Incident Enemies"],
+		"requires": "|Reimu - Snow Blossom| OR |Reimu - Blue Season|"
+	},
+	{
+		"name": "[Reimu] Yellow Incident Enemy Defeated",
+		"category": ["Reimu - Incident Enemies"],
+		"requires": "|Reimu - Yellow Subterranean| OR |Reimu - Imperishable Moon|"
+	},
+	{
+		"name": "[Reimu] Green Incident Enemy Defeated",
+		"category": ["Reimu - Incident Enemies"],
+		"requires": "|Reimu - Beast Hardiness| OR |Reimu - Shintoism Wind|"
+	},
+
+
+
+	{
+		"name": "[Marisa] Ubame - Midboss",
+		"region": "Marisa-Early-Game",
+		"category": ["Marisa - Stage 1"],
+		"requires": []
+	},
+	{
+		"name": "[Marisa] Ubame Defeated",
+		"region": "Marisa-Early-Game",
+		"category": ["Marisa - Stage 1"],
+		"requires": []
+	},
+	{
+		"name": "[Marisa] Stage 1 Clear",
+		"region": "Marisa-Early-Game",
+		"category": ["Marisa - Stage 1"],
+		"requires": []
+	},
+	{
+		"name": "[Marisa] Chimi - MidBoss",
+		"region": "Marisa-Early-Game",
+		"category": ["Marisa - Stage 2"],
+		"requires": "|Stage 2|"
+	},
+	{
+		"name": "[Marisa] Chimi Defeated",
+		"region": "Marisa-Early-Game",
+		"category": ["Marisa - Stage 2"],
+		"requires": "|Stage 2|"
+	},
+	{
+		"name": "[Marisa] Stage 2 Clear",
+		"region": "Marisa-Early-Game",
+		"category": ["Marisa - Stage 2"],
+		"requires": "|Stage 2|"
+	},
+	{
+		"name": "[Marisa] Nareko Reached",
+		"region": "Marisa-Mid-Game",
+		"category": ["Marisa - Stage 3"],
+		"requires": "|Stage 3|"
+	},
+	{
+		"name": "[Marisa] Nareko Defeated",
+		"region": "Marisa-Mid-Game",
+		"category": ["Marisa - Stage 3"],
+		"requires": "|Stage 3|"
+	},
+	{
+		"name": "[Marisa] Stage 3 Clear",
+		"region": "Marisa-Mid-Game",
+		"category": ["Marisa - Stage 3"],
+		"requires": "|Stage 3|"
+	},
+	{
+		"name": "[Marisa] Wonder Stone - Midboss 1",
+		"region": "Marisa-Mid-Game",
+		"category": ["Marisa - Stage 4"],
+		"requires": "|Stage 4|"
+	},
+	{
+		"name": "[Marisa] Yuiman Defeated",
+		"region": "Marisa-Mid-Game",
+		"category": ["Marisa - Stage 4"],
+		"requires": "|Stage 4|"
+	},
+	{
+		"name": "[Marisa] Stage 4 Clear",
+		"region": "Marisa-Mid-Game",
+		"category": ["Marisa - Stage 4"],
+		"requires": "|Stage 4|"
+	},
+	{
+		"name": "[Marisa] Wonder Stone - Midboss 2",
+		"region": "Marisa-End-Game",
+		"category": ["Marisa - Stage 5"],
+		"requires": "|Stage 5|"
+	},
+	{
+		"name": "[Marisa] Toyohime Defeated",
+		"region": "Marisa-End-Game",
+		"category": ["Marisa - Stage 5"],
+		"requires": "|Stage 5|"
+	},
+	{
+		"name": "[Marisa] Stage 5 Clear",
+		"region": "Marisa-End-Game",
+		"category": ["Marisa - Stage 5"],
+		"requires": "|Stage 5|"
+	},
+	{
+		"name": "[Marisa] Ariya Reached",
+		"region": "Marisa-End-Game",
+		"category": ["Marisa - Stage 6"],
+		"requires": "|Stage 6|"
+	},
+	{
+		"name": "[Marisa] Ariya Defeated",
+		"region": "Marisa-End-Game",
+		"category": ["Marisa - Stage 6"],
+		"requires": "|Stage 6|",
+		"place_item": ["Ending"]
+	},
+	{
+		"name": "[Marisa] Stage 6 Clear",
+		"region": "Marisa-End-Game",
+		"category": ["Marisa - Stage 6"],
+		"requires": "|Stage 6|"
+	},
+
+	{
+		"name": "[Marisa] Red Incident Enemy Defeated",
+		"category": ["Marisa - Incident Enemies"],
+		"requires": "|Marisa - Scarlet Devil| OR |Marisa - Creature Red|"
+	},
+	{
+		"name": "[Marisa] Blue Incident Enemy Defeated",
+		"category": ["Marisa - Incident Enemies"],
+		"requires": "|Marisa - Snow Blossom| OR |Marisa - Blue Season|"
+	},
+	{
+		"name": "[Marisa] Yellow Incident Enemy Defeated",
+		"category": ["Marisa - Incident Enemies"],
+		"requires": "|Marisa - Yellow Subterranean| OR |Marisa - Imperishable Moon|"
+	},
+	{
+		"name": "[Marisa] Green Incident Enemy Defeated",
+		"category": ["Marisa - Incident Enemies"],
+		"requires": "|Marisa - Beast Hardiness| OR |Marisa - Shintoism Wind|"
+	},
+
+
+	
+	{
+		"name": "Game Beaten",
+		"victory": true,
+		"category": ["Victory"],
+		"requires": "|Ending:2|"
+	}
+]
