@@ -1,0 +1,64 @@
+[
+    { "name": "Blue Nit Killed", "category": ["Enemy Killed"], "region": "Zone 1" },
+    { "name": "Green Slime Killed", "category": ["Enemy Killed"], "region": "Zone 1" },
+    { "name": "Cyan Slime Killed", "category": ["Enemy Killed"], "region": "Zone 1" },
+    { "name": "Ant Killed", "category": ["Enemy Killed"], "region": "Zone 1" },
+    { "name": "Ant Egg Killed", "category": ["Enemy Killed"], "region": "Zone 1" },
+    
+    { "name": "Spider Killed", "category": ["Enemy Killed"], "region": "Zone 2" },
+    { "name": "Poison Spider Killed", "category": ["Enemy Killed"], "region": "Zone 2" },
+    { "name": "Forest Ent Killed", "category": ["Enemy Killed"], "region": "Zone 2" },
+    { "name": "Gnome Killed", "category": ["Enemy Killed"], "region": "Zone 2" },
+    { "name": "Proto Tree Killed", "category": ["Enemy Killed"], "region": "Zone 2" },
+    { "name": "The Log Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Zone 2" },
+
+    { "name": "Crab Killed", "category": ["Enemy Killed"], "region": "Zone 3" },
+    { "name": "Purple Blob Killed", "category": ["Enemy Killed"], "region": "Zone 3" },
+    { "name": "Rock Monster Killed", "category": ["Enemy Killed"], "region": "Zone 3" },
+    { "name": "Little Rock Monster Killed", "category": ["Enemy Killed"], "region": "Zone 3" },
+    { "name": "Floyd Killed", "category": ["Enemy Killed"], "region": "Zone 3" },
+    { "name": "Iron Slime Killed", "category": ["Enemy Killed"], "region": "Zone 3" },
+
+    { "name": "Stone Golem Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Rattle Snake Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Mech (Zone 4) Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Mossy Golem Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Crystal Scout Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Irishman Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Mr Feebo Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Iron Golem Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Poppie Ent Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+    { "name": "Emerald Guardian Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Zone 4" },
+    { "name": "Spectral Crystal Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Zone 4" },
+    { "name": "Spectral Healer Killed", "category": ["Enemy Killed"], "region": "Zone 4" },
+
+    { "name": "Green Snake Killed", "category": ["Enemy Killed"], "region": "Snake Pit" },
+    { "name": "Red Snake Killed", "category": ["Enemy Killed"], "region": "Snake Pit" },
+    { "name": "Purple Snake Killed", "category": ["Enemy Killed"], "region": "Snake Pit" },
+    { "name": "Snake God Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Snake Pit" },
+
+    { "name": "Red Mech Killed", "category": ["Enemy Killed"], "region": "Mech Pit" },
+    { "name": "Little Bot Killed", "category": ["Enemy Killed"], "region": "Mech Pit" },
+    { "name": "Mech Pilot Killed", "category": ["Enemy Killed"], "region": "Mech Pit" },
+    { "name": "The Inspector Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Mech Pit" },
+    { "name": "Tech Turret Killed", "category": ["Enemy Killed"], "region": "Mech Pit" },
+
+    { "name": "Top Left Hidden Pillar Killed", "category": ["Enemy Killed"], "region": "Hidden Temple" },
+    { "name": "Bottom Left Hidden Pillar Killed", "category": ["Enemy Killed"], "region": "Hidden Temple" },
+    { "name": "Top Right Hidden Pillar Killed", "category": ["Enemy Killed"], "region": "Hidden Temple" },
+    { "name": "Bottom Right Hidden Pillar Killed", "category": ["Enemy Killed"], "region": "Hidden Temple" },
+    { "name": "Left Hidden Guardian Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Hidden Temple" },
+    { "name": "Right Hidden Guardian Killed", "category": ["Enemy Killed", "Boss Killed"], "region": "Hidden Temple" },
+
+    { "name": "Lil Orange Killed", "category": ["Enemy Killed"], "region": "Netherlands" },
+
+    { "name": "Super Nit Killed", "category": ["Enemy Killed"], "region": "Alien Zone 1" },
+    { "name": "Cosmic Ant Killed", "category": ["Enemy Killed"], "region": "Alien Zone 1" },
+    { "name": "Cosmic Golem Killed", "category": ["Enemy Killed"], "region": "Alien Zone 1" },
+    { "name": "Cosmic Slime Killed", "category": ["Enemy Killed"], "region": "Alien Zone 1" },
+    { "name": "Pirate Killed", "category": ["Enemy Killed"], "region": "Alien Zone 1" },
+
+    { "name": "Victory", "category": ["Victory"], "region": "Alien Zone 1", "victory": true }
+
+    
+]

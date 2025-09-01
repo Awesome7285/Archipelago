@@ -15,6 +15,8 @@ def modlist_html_to_json():
 
     with open('worlds/manual_ktanemodules_awesome7285/ignore/modlist.json', 'w+', encoding='utf-8') as f:
         json.dump(mod_list, f, indent=4, ensure_ascii=False)
+    # with open('worlds/manual_ktanemodules_awesome7285/data/modlist.json', 'w+', encoding='utf-8') as f:
+    #     json.dump(list(mod_list.keys()), f, indent=4, ensure_ascii=False)
     
     return mod_list
 
@@ -33,12 +35,17 @@ def modlist_json_to_manual_json(mod_list:dict = None):
             { "name": "Victory", "victory": True, "category": ["Victory"], "requires": "{victory_rule()}"}
         ]
     }
+    regionsjson = {
+        "Office": {
+            "starting": True, "requires": [], "connects_to": []
+        }
+    }
 
-    for mod in mod_list.keys():
+    for i, mod in enumerate(mod_list.keys()):
         # Items
         mod_item = {
             "name": mod,
-            "count": 1,
+            "count": 0,
             "progression": True,
             "category": ["Module"]
         }
@@ -49,16 +56,30 @@ def modlist_json_to_manual_json(mod_list:dict = None):
         mod_location = {
             "name": f"{mod} Solved",
             "requires": f"|{mod}|",
-            "category": ["Module"]
+            #"region": mod,
+            "category": ["Module"],
+            "id": i+2
         }
 
         locationsjson["data"].append(mod_location)
+
+        # Regions
+        regionsjson[mod] = {
+            "connects_to": [],
+            "requires": f"|{mod}|"
+        }
+
+        regionsjson["Office"]["connects_to"].append(mod)
+
 
     with open('worlds/manual_ktanemodules_awesome7285/data/items.json', 'w', encoding='utf-8') as f:
         json.dump(itemsjson, f, indent=4, ensure_ascii=False)
     
     with open('worlds/manual_ktanemodules_awesome7285/data/locations.json', 'w', encoding='utf-8') as f:
         json.dump(locationsjson, f, indent=4, ensure_ascii=False)
+    
+    # with open('worlds/manual_ktanemodules_awesome7285/data/regions.json', 'w', encoding='utf-8') as f:
+    #     json.dump(regionsjson, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
 

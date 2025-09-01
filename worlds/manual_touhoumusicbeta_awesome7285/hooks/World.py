@@ -1,6 +1,6 @@
 # Object classes from AP core, to represent an entire MultiWorld and this individual World that's part of it
 from worlds.AutoWorld import World
-from BaseClasses import MultiWorld, CollectionState, Item, ItemClassification
+from BaseClasses import MultiWorld, CollectionState, Item
 
 # Object classes from Manual -- extending AP core -- representing items and locations that are used in generation
 from ..Items import ManualItem
@@ -13,7 +13,6 @@ from ..Data import game_table, item_table, location_table, region_table
 
 # These helper methods allow you to determine if an option has been set, or what its value is, for any player in the multiworld
 from ..Helpers import is_option_enabled, get_option_value, format_state_prog_items_key, ProgItemsCat
-from ..Helpers import load_data_file # I added this
 
 # calling logging.info("message") anywhere below in this file will output the message to both console and log file
 import logging
@@ -30,13 +29,7 @@ import logging
 ## The fill_slot_data method will be used to send data to the Manual client for later use, like deathlink.
 ########################################################################################
 
-actual_item_pool = []
-_seed = None
 
-EXTREMES = [
-    "Footover", "BadTV", "Reporting Anomalies", "XY-Ray", "Cruel Synesthesia", "Identifrac", "The Octadecayotton", "UltraStores", "The Very Annoying Button",
-    "Bell of Tío", "Vigilant Psycho", "Spectre Maze", "RNG Crystal", "Decay", "Simon Swindles", "Mislocation", "Beanboozled Again", "OmegaForget", "Bamboozled Again"
-]
 
 # Use this function to change the valid filler items to be created to replace item links or starting items.
 # Default value is the `filler_item_name` from game.json
@@ -46,73 +39,19 @@ def hook_get_filler_item_name(world: World, multiworld: MultiWorld, player: int)
 # Called before regions and locations are created. Not clear why you'd want this, but it's here. Victory location is included, but Victory event is not placed yet.
 def before_create_regions(world: World, multiworld: MultiWorld, player: int):
     pass
-    
 
 # Called after regions and locations are created, in case you want to see or modify that information. Victory location is included.
 def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     # Use this hook to remove locations from the world
-    # total = world.options.total_modules.value
-    global actual_item_pool
+    locationNamesToRemove: list[str] = [] # List of location names
 
-    # all_mods = load_data_file("modlist.json")
-    # chosen_modules = world.random.sample(all_mods, total)
+    # Add your code here to calculate which locations to remove
 
-    # e_region = multiworld.get_region("Menu", player)
-
-    # for mod in chosen_modules:
-        
-    #     #e_item = ManualItem(mod, ItemClassification.progression, None, player=player) # Create the event item
-    #     e_loc = ManualLocation(player, mod, None, e_region) # create the event location
-    #     e_region.locations.append(e_loc) # put the event location in the region
-    #     actual_item_pool.append(mod)
-
-    total = world.options.total_modules.value
-    all_modules = [name for name, l in world.location_name_to_location.items() if "Module" in l.get('category', [])]
-    chosen_modules = []
-
-    # Vetos
-    vetos = list(world.options.module_vetos.value)
-    if "_extremes" in vetos:
-        vetos.remove("_extremes")
-        vetos.extend(EXTREMES)
-    for module in vetos:
-        try:
-            all_modules.remove(module + " Solved")
-        except ValueError as e:
-            e.add_note(f"Unknown module: {module}")
-            raise e
-
-    # UnVetos
-    forces = list(world.options.module_forces.value)
-    for module in forces:
-        chosen_modules.append(module + " Solved")
-        try:
-            all_modules.remove(module + " Solved")
-        except ValueError:
-            print(f"Module {module} was removed twice for player {player}")
-        total -= 1
-
-    # If seed hasn't been set via slot_data (UT)
-    global _seed
-    if hasattr(multiworld, "re_gen_passthrough"): 
-        _seed = multiworld.re_gen_passthrough["Manual_KTaNEModules_Awesome7285"]["modules_seed"]
-    if _seed == None:
-        _seed = world.options._seed.value
-    print(f"Seed is set to {_seed} for player {player}")
-
-    # Randomly Select Modules
-    world.random.seed(_seed)
-    chosen_modules.extend(world.random.sample(all_modules, total))
-    actual_item_pool = [i.replace(" Solved", "") for i in chosen_modules]
-
-    # Remove Locations
     for region in multiworld.regions:
         if region.player == player:
             for location in list(region.locations):
-                if location.name not in chosen_modules and location.name != "Victory": # Changed this line
+                if location.name in locationNamesToRemove:
                     region.locations.remove(location)
-
-
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
 # Valid item_config key/values:
@@ -123,27 +62,6 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 #       will create 5 items that are the "useful trap" class
 # {"Item Name": {ItemClassification.useful: 5}} <- You can also use the classification directly
 def before_create_items_all(item_config: dict[str, int|dict], world: World, multiworld: MultiWorld, player: int) -> dict[str, int|dict]:
-    # Use this hook to remove items from the item pool
-    # itemNamesToRemove: list[str] = [] # List of item names
-
-    # chosen_modules = [i.name.replace(" Solved", "") for i in multiworld.get_locations(player=player)]
-    # # Will break if a module releases with the word Solved in it or "Victory"
-    # #print(chosen_modules)
-
-    # for name, content in item_config.items():
-    #     if name not in chosen_modules:
-    #         item_config[name] = 0
-            #itemNamesToRemove.append(module.name)
-
-    # for itemName in itemNamesToRemove:
-    #     item = next(i for i in item_pool if i.name == itemName)
-    #     item_pool.remove(item)
-
-    global actual_item_pool
-    #print(actual_item_pool)
-    for item in actual_item_pool:
-        item_config[item] = {"progression": 1}
-
     return item_config
 
 # The item pool before starting items are processed, in case you want to see the raw item pool at that stage
@@ -152,16 +70,25 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
 
 # The item pool after starting items are processed but before filler is added, in case you want to see the raw item pool at that stage
 def before_create_items_filler(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
+    # Use this hook to remove items from the item pool
+    itemNamesToRemove: list[str] = [] # List of item names
 
-    # Starting Items
-    starting_modules = world.options.starting_modules.value
 
-    #print(item_pool)
+    if world.options.disable_filler_th.value == True:
+        itemNamesToRemove.extend([
+            name for name, l in world.item_name_to_item.items()
+                if "Touhou Related Filler" in l.get('category', [])
+        ])
 
-    for _ in range(starting_modules):
-        chosen_item = world.random.choice([i for i in item_pool if i.player == player])
-        multiworld.push_precollected(chosen_item)
-        item_pool.remove(chosen_item)
+    if world.options.disable_filler_other.value == True:
+        itemNamesToRemove.extend([
+            name for name, l in world.item_name_to_item.items()
+                if "Other Filler" in l.get('category', [])
+        ])
+
+    for itemName in itemNamesToRemove:
+        item = next(i for i in item_pool if i.name == itemName)
+        item_pool.remove(item)
 
     return item_pool
 
@@ -240,7 +167,6 @@ def before_fill_slot_data(slot_data: dict, world: World, multiworld: MultiWorld,
 
 # This is called after slot data is set and provides the slot data at the time, in case you want to check and modify it after Manual is done with it
 def after_fill_slot_data(slot_data: dict, world: World, multiworld: MultiWorld, player: int) -> dict:
-    slot_data["modules_seed"] = _seed
     return slot_data
 
 # This is called right at the end, in case you want to write stuff to the spoiler log

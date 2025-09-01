@@ -1,5 +1,5 @@
 # Object classes from AP that represent different types of options that you can create
-from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions, OptionSet
+from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions
 # These helper methods allow you to determine if an option has been set, or what its value is, for any player in the multiworld
 from ..Helpers import is_option_enabled, get_option_value
 from typing import Type, Any
@@ -25,47 +25,18 @@ from typing import Type, Any
 # To add an option, use the before_options_defined hook below and something like this:
 #   options["total_characters_to_win_with"] = TotalCharactersToWinWith
 #
-class TotalModules(Range):
-    """Total Number of modules to randomly generate."""
-    range_start = 1
-    range_end = 2000
-    default = 50
+class DisableTouhouFiller(Toggle):
+    """Removes all the touhou related silly filler from the item pool."""
+    default = False
 
-class StartingModules(Range):
-    """Number of modules to randomly add to the starting inventory."""
-    range_start = 1
-    range_end = 20
-    default = 5
-
-class CompletionPercentage(Range):
-    """Percent of modules which must be completed in order to goal."""
-    range_start = 10
-    range_end = 100
-    default = 75
-
-class ModuleVetos(OptionSet):
-    """Prevents listed modules from appearing.
-    Type "_extremes" to include all extreme rated modules."""
-
-class ModuleForces(OptionSet):
-    """Forces listed modules to appear."""
-
-class Seed(Range):
-    """Seed used to generate which modules are chosen.
-    Recommended to keep it at random."""
-    display_name = "generator_seed"
-    range_start = 0
-    range_end = 10000000
-    default = "random"
+class DisableStupidFiller(Toggle):
+    """Removes all the other silly filler from the item pool."""
+    default = True
 
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
-    options["total_modules"] = TotalModules
-    options["starting_modules"] = StartingModules
-    options["completion_percentage"] = CompletionPercentage
-    options["module_vetos"] = ModuleVetos
-    options["module_forces"] = ModuleForces
-    options["_seed"] = Seed
+    options["disable_filler_th"] = DisableTouhouFiller
+    options["disable_filler_other"] = DisableStupidFiller
     return options
 
 # This is called after any manual options are defined, in case you want to see what options are defined or want to modify the defined options
