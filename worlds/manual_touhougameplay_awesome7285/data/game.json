@@ -1,0 +1,16 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
+  "game": "TouhouGameplay",
+  "creator": "Awesome7285",
+  "filler_item_name": "Filler",
+  "starting_items": [
+    {
+      "item_categories": [
+        "Game"
+      ],
+      "random": 1
+    }
+  ],
+  "death_link": false,
+  "starting_index": 1
+}
