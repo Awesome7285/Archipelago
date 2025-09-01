@@ -30,8 +30,8 @@ import logging
 ## The fill_slot_data method will be used to send data to the Manual client for later use, like deathlink.
 ########################################################################################
 
-actual_item_pool = []
-_seed = None
+actual_item_pool = {}
+_seed = {}
 
 EXTREMES = [
     "Footover", "BadTV", "Reporting Anomalies", "XY-Ray", "Cruel Synesthesia", "Identifrac", "The Octadecayotton", "UltraStores", "The Very Annoying Button",
@@ -94,16 +94,18 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 
     # If seed hasn't been set via slot_data (UT)
     global _seed
-    if hasattr(multiworld, "re_gen_passthrough"): 
-        _seed = multiworld.re_gen_passthrough["Manual_KTaNEModules_Awesome7285"]["modules_seed"]
-    if _seed == None:
-        _seed = world.options._seed.value
-    print(f"Seed is set to {_seed} for player {player}")
+    if hasattr(multiworld, "re_gen_passthrough"):
+        print("You should only see this if you're opening UT.")
+        _seed[player] = multiworld.re_gen_passthrough["Manual_KTaNEModules_Awesome7285"]["modules_seed"]
+    #if _seed == None:
+    else:
+        _seed[player] = world.options._seed.value
+    print(f"Seed is set to {_seed[player]} for player {player}")
 
     # Randomly Select Modules
-    world.random.seed(_seed)
+    world.random.seed(_seed[player])
     chosen_modules.extend(world.random.sample(all_modules, total))
-    actual_item_pool = [i.replace(" Solved", "") for i in chosen_modules]
+    actual_item_pool[player] = [i.replace(" Solved", "") for i in chosen_modules]
 
     # Remove Locations
     for region in multiworld.regions:
@@ -141,7 +143,7 @@ def before_create_items_all(item_config: dict[str, int|dict], world: World, mult
 
     global actual_item_pool
     #print(actual_item_pool)
-    for item in actual_item_pool:
+    for item in actual_item_pool[player]:
         item_config[item] = {"progression": 1}
 
     return item_config
@@ -240,7 +242,7 @@ def before_fill_slot_data(slot_data: dict, world: World, multiworld: MultiWorld,
 
 # This is called after slot data is set and provides the slot data at the time, in case you want to check and modify it after Manual is done with it
 def after_fill_slot_data(slot_data: dict, world: World, multiworld: MultiWorld, player: int) -> dict:
-    slot_data["modules_seed"] = _seed
+    slot_data["modules_seed"] = _seed[player]
     return slot_data
 
 # This is called right at the end, in case you want to write stuff to the spoiler log
