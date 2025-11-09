@@ -1,7 +1,7 @@
 [
-  { "name": "North Melbourne Station", "region": "North Melbourne", "category": ["Werribee and Williamstown Lines", "Sunbury Line", "Craigieburn Line", "Upfield Line"] },
-  { "name": "South Kensington Station", "region": "North Melbourne", "category": ["Werribee and Williamstown Lines"] },
-  { "name": "Footscray Station", "region": "Newport", "category": ["Werribee and Williamstown Lines", "Sunbury Line"] },
+  { "name": "North Melbourne Station", "region": "Footscray", "category": ["Werribee and Williamstown Lines", "Sunbury Line", "Craigieburn Line", "Upfield Line"] },
+  { "name": "South Kensington Station", "region": "Footscray", "category": ["Werribee and Williamstown Lines"] },
+  { "name": "Footscray Station", "region": "Footscray", "category": ["Werribee and Williamstown Lines", "Sunbury Line"] },
   { "name": "Seddon Station", "region": "Newport", "category": ["Werribee and Williamstown Lines"] },
   { "name": "Yarraville Station", "region": "Newport", "category": ["Werribee and Williamstown Lines"] },
   { "name": "Spotswood Station", "region": "Newport", "category": ["Werribee and Williamstown Lines"] },

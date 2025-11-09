@@ -77,6 +77,14 @@ class EnableTimeKeeperCheck(Toggle):
     Only in logic after receiving the Time Keeper item."""
     default = True
 
+class Seed(Range):
+    """Seed used to generate which modules are chosen.
+    Recommended to keep it at random."""
+    display_name = "generator_seed"
+    range_start = 0
+    range_end = 10000000
+    default = "random"
+
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
     options["bomb_mission"] = BombMission
@@ -88,6 +96,7 @@ def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, T
     options["enable_fe_check"] = EnableForgetEverythingCheck
     options["start_with_tax_returns"] = StartWithTaxReturns
     options["enable_timekeeper_check"] = EnableTimeKeeperCheck
+    options["_seed"] = Seed
     return options
 
 # This is called after any manual options are defined, in case you want to see what options are defined or want to modify the defined options

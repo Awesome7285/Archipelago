@@ -9,6 +9,10 @@ class Goal(Choice):
 	option_both = 2
 	default = 0
 
+class RandomizeDeclan(Toggle):
+    """Adds the Declan Power-Up as an item in the item pool. Required for the stages that need blocks to be broken. Does not add a location."""
+    default = False
+
 class Roomsanity(Toggle):
     """Makes each individual level's rooms a check for completing them."""
     display_name = "Roomsanity"
@@ -17,5 +21,6 @@ class Roomsanity(Toggle):
 @dataclass
 class TomTom4Options(PerGameCommonOptions):
     goal: Goal
-    roomsanity: Roomsanity
-    death_link: DeathLink
+    #randomize_declan: RandomizeDeclan
+    #roomsanity: Roomsanity
+    #death_link: DeathLink

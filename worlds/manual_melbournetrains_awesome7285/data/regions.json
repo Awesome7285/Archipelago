@@ -1,12 +1,33 @@
 {
-  "Newport": {
+  "Flinders Street": {
     "starting": true,
+    "connects_to": [
+      "South Yarra",
+      "Southern Cross"
+    ],
+    "requires": "|Southern Cross and Flinders Street Access|"
+  },
+  "Southern Cross": {
+    "connects_to": [
+      "Footscray",
+      "City Loop"
+    ],
+    "requires": "|Southern Cross and Flinders Street Access|"
+  },
+  "Footscray": {
+    "connects_to": [
+      "Essendon",
+      "Coburg",
+      "Sunshine",
+      "Newport"
+    ],
+    "requires": "|North Melbourne and Footscray Access|"
+  },
+  "Newport": {
     "connects_to": [
       "Williamstown",
       "Altona Loop",
-      "Werribee",
-      "North Melbourne",
-      "Sunshine"
+      "Werribee"
     ],
     "requires": "|Newport Access|"
   },
@@ -21,15 +42,6 @@
   "Werribee": {
     "connects_to": [],
     "requires": "|Werribee Access|"
-  },
-  "North Melbourne": {
-    "connects_to": [
-      "Essendon",
-      "Coburg",
-      "Southern Cross",
-      "City Loop"
-    ],
-    "requires": "|North Melbourne Access|"
   },
   "Sunshine": {
     "connects_to": [
@@ -73,22 +85,9 @@
     "connects_to": [],
     "requires": "|Progressive Upfield Access:2|"
   },
-  "Southern Cross": {
-    "connects_to": [
-      "Flinders Street"
-    ],
-    "requires": "|Southern Cross and Flinders Street Access|"
-  },
-  "Flinders Street": {
-    "connects_to": [
-      "South Yarra"
-    ],
-    "requires": "|Southern Cross and Flinders Street Access|"
-  },
   "City Loop": {
     "connects_to": [
-      "Clifton Hill",
-      "South Yarra"
+      "Clifton Hill"
     ],
     "requires": "|City Loop Access|"
   },

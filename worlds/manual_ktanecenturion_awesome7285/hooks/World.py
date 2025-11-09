@@ -29,7 +29,7 @@ import logging
 ## The fill_slot_data method will be used to send data to the Manual client for later use, like deathlink.
 ########################################################################################
 
-
+_seed = {}
 
 # Use this function to change the valid filler items to be created to replace item links or starting items.
 # Default value is the `filler_item_name` from game.json
@@ -99,6 +99,8 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
             for location in list(region.locations):
                 if location.name in locationNamesToRemove:
                     region.locations.remove(location)
+
+        print(region.name, [i for i in region.locations])
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
 # Valid item_config key/values:
@@ -183,14 +185,23 @@ def before_create_items_filler(item_pool: list, world: World, multiworld: MultiW
         ]
     )
 
+    starting_item_names = [name for name, i in world.item_name_to_item.items() if starting_category in i.get("category", [])]
+
+    # Set the Seed
+    global _seed
+    if hasattr(multiworld, "re_gen_passthrough"):
+        print("You should only see this if you're opening UT.")
+        _seed[player] = multiworld.re_gen_passthrough["Manual_KTaNE Centurion_Awesome7285"]["modules_seed"]
+    else:
+        _seed[player] = world.options._seed.value
+    print(f"Seed is set to {_seed[player]} for player {player}")
+    world.random.seed(_seed[player])
+
     # Shuffle the items for TTKs off, if it's enabled it'll pick all 6 anyway
     world.random.shuffle(starting_item_names)
 
     # we add the list of items that have this specific category to our possible items
-    possible_items = [
-        i for i in item_pool 
-            if i.name in starting_item_names
-    ]
+    possible_items = [i for i in item_pool if i.name in starting_item_names]
 
     for _ in range(no_starting_modules):
         chosen_item = world.random.choice(possible_items)
@@ -275,6 +286,7 @@ def before_fill_slot_data(slot_data: dict, world: World, multiworld: MultiWorld,
 
 # This is called after slot data is set and provides the slot data at the time, in case you want to check and modify it after Manual is done with it
 def after_fill_slot_data(slot_data: dict, world: World, multiworld: MultiWorld, player: int) -> dict:
+    slot_data["modules_seed"] = _seed[player]
     return slot_data
 
 # This is called right at the end, in case you want to write stuff to the spoiler log

@@ -1,6 +1,6 @@
 from typing import List, Dict, Tuple
 from worlds.LauncherComponents import Component, components, Type, launch_subprocess
-from .Items import TomTom4Item, stage_items, other_items, filler_items, all_items, item_table as item_name_to_id
+from .Items import TomTom4Item, stage_items, other_items, filler_items, all_items, starting_items, item_table as item_name_to_id
 from .Locations import TomTom4Location, stage_locations, extra_locations, location_table as location_name_to_id
 from .Regions import create_regions
 from .Rules import set_rules
@@ -15,16 +15,6 @@ def run_client():
     launch_subprocess(client_main)
 
 components.append(Component("TomTom 4 Client", func=run_client, component_type=Type.CLIENT))
-
-# class KTANEWeb(WebWorld):
-#     tutorials = [Tutorial(
-#         "Multiworld Setup Guide",
-#         "A guide to setting up Keep Talking and Nobody Explodes for Multiworld.",
-#         "English",
-#         "setup_en.md",
-#         "setup/en",
-#         ["GreenPower713"]
-#     )]
 
 
 class TomTom4World(World):
@@ -61,6 +51,10 @@ class TomTom4World(World):
         item_pool: List[TomTom4Item] = []
         #print([i.name for i in self.multiworld.get_locations()])
 
+        # Add Underground World Access to starting items
+        for item in starting_items:
+            self.multiworld.push_precollected(self.create_item(item))
+
         # Add victory items
         goal = getattr(self.options, "goal")
         if goal == 1 or goal == 2:
@@ -93,24 +87,3 @@ class TomTom4World(World):
         }
 
         return slot_data
-
-    # def generate_output(self, output_directory: str):
-    #    if self.multiworld.players != 1:
-    #        return
-    #    data = {
-    #        "slot_data": self.fill_slot_data(),
-    #        "location_to_item": {self.location_name_to_id[i.name] : item_table[i.item.name] for i in self.multiworld.get_locations()},
-    #        "data_package": {
-    #            "data": {
-    #                "games": {
-    #                    self.game: {
-    #                        "item_name_to_id": self.item_name_to_id,
-    #                        "location_name_to_id": self.location_name_to_id
-    #                    }
-    #                }
-    #            }
-    #        }
-    #    }
-    #    filename = f"{self.multiworld.get_out_file_name_base(self.player)}.apv6"
-    #    with open(os.path.join(output_directory, filename), 'w') as f:
-    #        json.dump(data, f)

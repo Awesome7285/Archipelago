@@ -1,43 +1,198 @@
-import os
-import sys
-import Utils
-import asyncio
-import multiprocessing
-import configparser
+import subprocess, os, sys, Utils, asyncio, configparser, multiprocessing, json
 import colorama
+from pathlib import Path
+from collections import Counter
 
-from CommonClient import CommonContext, server_loop, gui_enabled, get_base_parser
-from .Items import item_table
+from CommonClient import CommonContext, server_loop, gui_enabled, get_base_parser, logger, ClientStatus
+from .Items import item_table, BASE_ID
 from .Locations import location_table, stage_locations
 
-INI_FILE = "tomtom4_ap.ini"
+# CONFIG filename (stored in user home)
+CONFIG_FILENAME = Path(os.path.join(Utils.user_path(), ".tomtom4_client_config.json"))
+EXPECTED_EXE_NAMES = ["TomTom Flaming Special Archipelago.exe"]  # tolerate variations
 
-def clear_ini():
-    if os.path.exists(INI_FILE):
-        os.remove(INI_FILE)
-    open(INI_FILE, "w").close()
+def load_saved_game_dir():
+    """Return saved directory Path or None."""
+    try:
+        if CONFIG_FILENAME.exists():
+            data = json.loads(CONFIG_FILENAME.read_text(encoding="utf-8"))
+            p = Path(data.get("game_dir", ""))
+            if p.exists() and p.is_dir():
+                return p
+    except Exception:
+        print("yes: ", CONFIG_FILENAME)
+        pass
+    return None
 
-def read_ini_section(section):
+def save_game_dir(game_dir: Path):
+    """Persist the chosen game_dir for next runs."""
+    try:
+        CONFIG_FILENAME.write_text(json.dumps({"game_dir": str(game_dir)}), encoding="utf-8")
+    except Exception as e:
+        print("Warning: failed to save tomtom4 client config:", e)
+
+def _is_valid_game_exe(path: Path):
+    """Simple heuristic: path is file and name matches expected exe name or contains 'tomtom'."""
+    if not path.exists() or not path.is_file():
+        return False
+    name = path.name.lower()
+    if any(exe.lower() == name for exe in EXPECTED_EXE_NAMES):
+        return True
+    return False
+
+def prompt_for_exe_via_gui(initialdir=None):
+    """Open a Tk file dialog to pick the executable. Returns Path or None."""
+    try:
+        import tkinter as tk
+        from tkinter import filedialog
+    except Exception:
+        return None
+
+    root = tk.Tk()
+    root.withdraw()  # hide main window
+    root.attributes("-topmost", True)  # bring dialog to front on Windows
+    filetypes = [("Executable", "*.exe"), ("All files", "*.*")]
+    try:
+        selected = filedialog.askopenfilename(title="Select TomTom4 executable",
+                                              initialdir=initialdir or str(Path.home()),
+                                              filetypes=filetypes)
+    finally:
+        try:
+            root.destroy()
+        except Exception:
+            pass
+
+    if not selected:
+        return None
+    return Path(selected)
+
+def prompt_for_exe_via_console(initialdir=None):
+    """Fallback: ask user to paste the full path in the console."""
+    prompt = "Enter full path to TomTom4 executable (or blank to cancel): "
+    if initialdir:
+        print("Please select TomTom4 executable. Suggested dir:", initialdir)
+    val = input(prompt).strip()
+    if not val:
+        return None
+    return Path(val)
+
+def ask_user_for_game_exe():
+    """
+    Try GUI picker first, then console. Validate selection and return (exe_path, game_dir) or (None, None).
+    """
+    # Try GUI
+    exe_path = prompt_for_exe_via_gui()
+    if exe_path and _is_valid_game_exe(exe_path):
+        return exe_path.resolve(), exe_path.parent.resolve()
+
+    # GUI either cancelled or picked invalid file. Ask via console (if interactive).
+    if sys.stdin and sys.stdin.isatty():
+        exe_path = prompt_for_exe_via_console()
+        if exe_path and _is_valid_game_exe(exe_path):
+            return exe_path.resolve(), exe_path.parent.resolve()
+
+    # last attempt: search current directory and parent for likely exe
+    cwd = Path.cwd()
+    for candidate in cwd.iterdir():
+        if candidate.is_file() and _is_valid_game_exe(candidate):
+            return candidate.resolve(), candidate.parent.resolve()
+
+    return None, None
+
+def ensure_game_dir():
+    """
+    Return Path to game directory. Load saved config or prompt user. Save result.
+    """
+    saved = load_saved_game_dir()
+    if saved:
+        # quick sanity check: the exe must exist in that dir
+        for name in EXPECTED_EXE_NAMES:
+            candidate = saved / name
+            if candidate.exists() and candidate.is_file():
+                return saved
+        # if saved dir no longer valid, fall through to prompt
+
+    exe_path, game_dir = ask_user_for_game_exe()
+    if exe_path and game_dir:
+        save_game_dir(game_dir)
+        return game_dir
+
+    return None
+
+def launch_game(exe_path: Path = None, game_dir: Path = None):
+    """
+    Launch the game exe with working directory set to game_dir (or exe parent).
+    exe_path optional; if omitted the function will try to find an exe inside game_dir.
+    """
+    if game_dir is None and exe_path is None:
+        raise ValueError("Either exe_path or game_dir must be provided")
+    if game_dir is None:
+        game_dir = exe_path.parent
+    if exe_path is None:
+        # try to find an exe inside game_dir
+        for name in EXPECTED_EXE_NAMES:
+            candidate = game_dir / name
+            if candidate.exists():
+                exe_path = candidate
+                break
+        if exe_path is None:
+            # choose any .exe in folder
+            candidates = list(game_dir.glob("*.exe"))
+            exe_path = candidates[0] if candidates else None
+    if not exe_path or not exe_path.exists():
+        raise FileNotFoundError(f"Could not find executable in {game_dir}")
+
+    # Launch and return Popen object
+    popen = subprocess.Popen([str(exe_path)], cwd=str(game_dir))
+    return popen
+
+def clear_ini(ini_dir):
+    if os.path.exists(ini_dir):
+        os.remove(ini_dir)
     config = configparser.ConfigParser()
-    config.read(INI_FILE)
+    config.add_section("Items")
+    config.add_section("Locations")
+    with open(ini_dir, "w") as f:
+        config.write(f)
+
+def read_ini_section(ini_dir, section):
+    config = configparser.ConfigParser()
+    config.read(ini_dir)
     return dict(config[section]) if section in config else {}
 
-def write_ini(section, key, value):
+def write_ini(ini_dir, section, key, value):
     config = configparser.ConfigParser()
-    if os.path.exists(INI_FILE):
-        config.read(INI_FILE)
+    if os.path.exists(ini_dir):
+        config.read(ini_dir)
     if section not in config:
         config[section] = {}
     config[section][key] = str(value).lower()
-    with open(INI_FILE, "w") as f:
-        config.write(f)
 
-class TomTom4Client(CommonContext):
+    tmp = ini_dir + ".tmp"
+    with open(tmp, "w") as f:
+        config.write(f)
+    os.replace(tmp, ini_dir)
+
+class TomTom4Context(CommonContext):
     game = "TomTom Adventures Flaming Special"
+    items_handling = 0b111
+    game_dir = None
+    ini_file = "tomtom4_ap.ini"
+    ini_dir = None
 
     def __init__(self, server_address, password):
         super().__init__(server_address, password)
         self.checked_locations = set()
+        self.is_connected = False
+        self.options = None
+
+        self.all_location_ids = None
+        self.location_name_to_ap_id = None
+        self.location_ap_id_to_name = None
+        self.item_name_to_ap_id = None
+        self.item_ap_id_to_name = None
+        self.previous_location_checked = None
+        self.location_mapping = None
 
     def make_gui(self):
         ui = super().make_gui()
@@ -50,83 +205,90 @@ class TomTom4Client(CommonContext):
         await self.get_username()
         await self.send_connect()
 
-    def on_package(self, cmd, args):
-        super().on_package(cmd, args)
+    def on_package(self, cmd: str, args: dict):
+        """
+        Manage the package received from the server
+        """
+        
+        if cmd == "Connected":
+            self.previous_location_checked = args['checked_locations']
+            self.all_location_ids = set(args["missing_locations"] + args["checked_locations"])
+            self.options = args["slot_data"] # Yaml Options
+            self.is_connected = True
 
-    def on_connected(self):
-        self.send_connect()
-        # Sync items you already have from the server into INI
-        for item in self.items_received:
-            self._apply_item_to_ini(item.item)
-        # Optionally sync completed locations
-        for loc_id in self.locations_checked:
-            name = self.location_name(loc_id)
-            self._apply_location_to_ini(name)
+            asyncio.create_task(self.send_msgs([{"cmd": "GetDataPackage", "games": ["TomTom Adventures Flaming Special"]}]))
+            clear_ini(self.ini_dir)
+            asyncio.create_task(self.update_checked_locations(self.previous_location_checked))
 
-    def on_item(self, item):
-        item_name = self.item_name(item.item)
-        print(f"Received item: {item_name}")
-        self._apply_item_to_ini(item_name)
+        if cmd == "ReceivedItems":
+            print("got:", args["items"])
+            asyncio.create_task(self.update_received_items(args["items"]))
 
-    def on_tick(self):
-        # Read completed locations from game
-        complete_flags = read_ini_section("Complete")
-        for lvl_str, value in complete_flags.items():
-            if value.lower() == "true":
-                loc_name = self._level_complete_name(int(lvl_str))
-                if loc_name in location_table and loc_name not in self.checked_locations:
-                    self.send_location_checks([location_table[loc_name]])
-                    self.checked_locations.add(loc_name)
+        elif cmd == "DataPackage":
+            if not self.all_location_ids:
+                # Connected package not received yet, wait for datapackage request after connected package
+                return
+            self.location_name_to_ap_id = args["data"]["games"]["TomTom Adventures Flaming Special"]["location_name_to_id"]
+            self.location_name_to_ap_id = {
+                name: loc_id for name, loc_id in
+                self.location_name_to_ap_id.items() if loc_id in self.all_location_ids
+            }
+            self.location_ap_id_to_name = {v: k for k, v in self.location_name_to_ap_id.items()}
+            self.item_name_to_ap_id = args["data"]["games"]["TomTom Adventures Flaming Special"]["item_name_to_id"]
+            self.item_ap_id_to_name = {v: k for k, v in self.item_name_to_ap_id.items()}
 
-    def _apply_item_to_ini(self, item_name):
-        if item_name.startswith("Level Access: "):
-            lvl_id = self._stage_to_id(item_name.replace("Level Access: ", "") + " Complete")
-            write_ini("Access", str(lvl_id), True)
-        elif item_name == "Jump Power-Up":
-            write_ini("Access", "jump", True)
-        elif item_name == "Key":
-            write_ini("Access", "key", True)
-        elif item_name == "Hose":
-            write_ini("Access", "hose", True)
-        elif item_name in ("House Cleaned", "Tyler Defeated"):
-            write_ini("Access", item_name.lower().replace(" ", "_"), True)
+            print(self.location_name_to_ap_id)
+            print(self.location_ap_id_to_name)
+            print(self.item_name_to_ap_id)
+            print(self.item_ap_id_to_name)
 
-    def _apply_location_to_ini(self, location_name):
-        lvl_id = self._stage_to_id(location_name)
-        write_ini("Complete", str(lvl_id), True)
+            asyncio.create_task(self.check_for_locations_loop())
 
-    def _stage_to_id(self, stage_name):
-        # stage_name must match stage_locations entries
-        return stage_locations.index(stage_name + " Complete") + 1
+    def update_ini_file(self) -> None:
+        """Updates the INI file directory"""
+        self.ini_dir = os.path.join(self.game_dir, self.ini_file)
 
-    def _level_complete_name(self, lvl_id):
-        return stage_locations[lvl_id - 1]
+    async def update_checked_locations(self, locations):
+        """Updates the locations already completed from initial datapackage"""
+        print(locations)
+        for loc in locations:
+            write_ini(self.ini_dir, "Locations", str(loc-BASE_ID+1), 1)
+    
+    async def update_received_items(self, items):
+        """Updates items received to the INI"""
+        new_items = [item.item-BASE_ID+1 for item in items]
+        received = dict(Counter(new_items))
+        for item_id, amount in received.items():
+            write_ini(self.ini_dir, "Items", str(item_id), amount)
 
-    # def run_cli(self):
-    #     import argparse
-    #     parser = argparse.ArgumentParser()
-    #     parser.add_argument("server", help="Server address in the form host:port")
-    #     parser.add_argument("name", help="Player name")
-    #     parser.add_argument("--password", default="", help="Server password")
-    #     args = parser.parse_args()
+        # Check for victory
+        if self.item_name_to_ap_id:
+            received_ids = {item.item for item in self.items_received}
+            if self.options["goal"] == 0:
+                if self.item_name_to_ap_id["House Cleaned"] in received_ids:
+                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+            if self.options["goal"] == 1:
+                if self.item_name_to_ap_id["Tyler Defeated"] in received_ids:
+                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+            if self.options["goal"] == 2:
+                if self.item_name_to_ap_id["Tyler Defeated"] in received_ids and self.item_name_to_ap_id["House Cleaned"] in received_ids:
+                    await self.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
+    
+    async def check_for_locations_loop(self):
+        """Permanent Loop that checks the users ini file for new locations to send"""
+        while True:
+            await asyncio.sleep(1.3)
+            new_locations = []
+            written_locations = read_ini_section(self.ini_dir, "Locations")
+            for loc_id, obtained in written_locations.items():
+                actual_id = int(loc_id)+BASE_ID-1
+                if obtained == "1" and actual_id not in self.previous_location_checked:
+                    new_locations.append(actual_id)
 
-    #     clear_ini()
-    #     self.server_address = args.server
-    #     self.password = args.password
-    #     self.auth = args.name
-    #     self.connect()
+            if new_locations:
+                self.previous_location_checked = self.previous_location_checked + new_locations
+                await self.send_msgs([{"cmd": 'LocationChecks', "locations": new_locations}])
 
-    # def run_gui(self):
-    #     from kvui import GameManager
-
-    #     class BanjoTooieManager(GameManager):
-    #         logging_pairs = [
-    #             ("Client", "Archipelago")
-    #         ]
-    #         base_title = "Banjo-Tooie Client "+ version + " for AP"
-
-    #     self.ui = BanjoTooieManager(self)
-    #     self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
 
 def main():
     Utils.init_logging("TomTom 4 Client")
@@ -138,8 +300,21 @@ def main():
 
     async def _main():
         multiprocessing.freeze_support()
-        ctx = TomTom4Client(args.connect, args.password)
+        ctx = TomTom4Context(args.connect, args.password)
         ctx.server_task = asyncio.create_task(server_loop(ctx), name="Server Loop")
+        
+        game_dir = ensure_game_dir()
+        if not game_dir:
+            print("No TomTom4 executable selected. Client will not auto-launch game.")
+        else:
+            try:
+                popen = launch_game(game_dir=game_dir)
+                print("Launched game from:", game_dir)
+            except Exception as e:
+                print("Failed to launch game:", e)
+        ctx.game_dir = str(game_dir) if game_dir else None
+        ctx.update_ini_file()
+
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()
@@ -150,6 +325,8 @@ def main():
     colorama.init()
     asyncio.run(_main())
     colorama.deinit()
+
+    
 
 if __name__ == "__main__":
     main()

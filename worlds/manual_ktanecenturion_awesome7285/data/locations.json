@@ -94,10 +94,6 @@
     { "name": "Yahtzee Solved", "requires": "|Yahtzee|", "category": ["Regular Module", "Centurion Module"] },
     { "name": "Zoo Solved", "requires": "|Zoo|", "category": ["Regular Module", "Centurion Module"] },
 
-    { "name": "Vanilla 1 Solved", "requires": "", "category": ["Regular Module", "Centurion Module"] },
-    { "name": "Vanilla 2 Solved", "requires": "", "category": ["Regular Module", "Centurion Module"] },
-    { "name": "Vanilla 3 Solved", "requires": "", "category": ["Regular Module", "Centurion Module"] },
-
     { "name": "Algebra Solved", "requires": "|Algebra|", "category": ["Regular Module", "Praetorian Module"] },
     { "name": "Backgrounds Solved", "requires": "|Backgrounds|", "category": ["Regular Module", "Praetorian Module"] },
     { "name": "Big Circle Solved", "requires": "|Big Circle|", "category": ["Regular Module", "Praetorian Module"] },
@@ -246,6 +242,10 @@
     { "name": "Forget Everything Solved", "requires": "|@Regular Module:100| AND |Forget Everything|", "category": ["Boss/Timed Module", "OWAE Module"] },
     { "name": "Tax Returns Solved", "requires": "|Tax Returns|", "category": ["Boss/Timed Module", "OWAE Module"] },
     { "name": "The Time Keeper Solved", "requires": "|The Time Keeper|", "category": ["Boss/Timed Module", "OWAE Module"] },
+
+    { "name": "Vanilla 1 Solved", "requires": "", "category": ["Regular Module", "Centurion Module"] },
+    { "name": "Vanilla 2 Solved", "requires": "", "category": ["Regular Module", "Centurion Module"] },
+    { "name": "Vanilla 3 Solved", "requires": "", "category": ["Regular Module", "Centurion Module"] },
     
     { "name": "Bomb Defused", "victory": true, "category": ["Victory"], "requires": "{change_victory()}"}
 ]

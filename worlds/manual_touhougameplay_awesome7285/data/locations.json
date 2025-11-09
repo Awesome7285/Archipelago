@@ -1,6 +1,11 @@
 {
 	"$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
     "data": [
+        { "name": "EoSD: Reimu A - Easy 1CC", "requires": "", "category": ["Game: EoSD"], "region": "EoSD"},
+        { "name": "EoSD: Read Reimu's Ending", "requires": "", "category": ["Game: EoSD"], "region": "EoSD"},
+        { "name": "EoSD: Reimu A - Save a replay", "requires": "", "category": ["Game: EoSD"], "region": "EoSD"},
+
+
         { "name": "Reimu A: EoSD Easy 1CC", "category": ["Character: Reimu", "Difficulty: Easy", "Game: EoSD"], "region": "EoSD"},
         { "name": "Reimu B: EoSD Easy 1CC", "category": ["Character: Reimu", "Difficulty: Easy", "Game: EoSD"], "region": "EoSD"},
         { "name": "Marisa A: EoSD Easy 1CC", "category": ["Character: Marisa", "Difficulty: Easy", "Game: EoSD"], "region": "EoSD"},

@@ -1,32 +1,36 @@
 from BaseClasses import Item
 
-BASE_ID = 2247200
+BASE_ID = 2247201
 
 class TomTom4Item(Item):
     game: str = "TomTom Adventures Flaming Special"
 
 stage_items = [
-    "Level Access: Dirty World",
-    "Level Access: Desert World",
-    "Level Access: School",
-    "Level Access: Above the Clouds",
-    "Level Access: Snow World",
-    "Level Access: Space World",
-    "Level Access: Condensed Milk World",
-    "Level Access: Rumi's Palace",
-    "Level Access: Fire Hydrent World",
-    "Level Access: Maze World",
-    "Level Access: Mars",
-    "Level Access: Jungle World",
-    "Level Access: Tetris World",
-    "Level Access: Christmas World",
-    "Level Access: The Jungle Inferno",
-    "Level Access: Mexico",
-    "Level Access: Pythag World",
-    "Level Access: Lava World",
-    "Level Access: Purple Abyss",
-    "Level Access: The End",
-    "Level Access: Bridge World"
+    "Dirty World Access",
+    "Desert World Access",
+    "School Access",
+    "Above the Clouds Access",
+    "Snow World Access",
+    "Space World Access",
+    "Condensed Milk World Access",
+    "Rumi's Palace Access",
+    "Fire Hydrent World Access",
+    "Maze World Access",
+    "Mars Access",
+    "Jungle World Access",
+    "Tetris World Access",
+    "Christmas World Access",
+    "The Jungle Inferno Access",
+    "Mexico Access",
+    "Pythag World Access",
+    "Lava World Access",
+    "Purple Abyss Access",
+    "The End Access",
+    "Bridge World Access"
+]
+
+starting_items = [
+    "Underground World Access"
 ]
 
 other_items = [
@@ -45,55 +49,38 @@ filler_items = [
     "Declan Power-Up"
 ]
 
-all_items = stage_items + other_items + victory_items + filler_items
+all_items = starting_items + stage_items + other_items + victory_items + filler_items
 
 item_table = {name: id for id, name in enumerate(all_items, BASE_ID)}
 
-#Name classification:
-#713 01 001
-#713 Auth
-#01 Game
-#001 itemID
-
-# modules_item_table = {
-#     "Complicated Wires": 71301001,
-#     "Maze": 71301002,
-#     "Memory": 71301003,
-#     "Morse Code": 71301004,
-#     "Password": 71301005,
-#     "Simon Says": 71301006,
-#     "Who's on First": 71301007,
-#     "Wire Sequence": 71301008,
-#     "Capacitor": 71301009,
-#     "Knob": 71301010,
-#     "Vent Gas": 71301011
-# }
-
-# modules_item_nohl_table = {
-#     "Complicated Wires": 71301001,
-#     "Maze": 71301002,
-#     "Memory": 71301003,
-#     "Morse Code": 71301004,
-#     "Password": 71301005,
-#     "Simon Says": 71301006,
-#     "Who's on First": 71301007,
-#     "Wire Sequence": 71301008,
-#     "Knob": 71301010
-# }
-
-# other_progression_items = {
-#     "Bomb Fragment": 71301012,
-#     "Time++": 71301013
-# }
-
-# useful_items = {
-#     "Time+": 71301014
-# }
-
-# filler_item = {
-#     "Strike+": 71301015
-# }
-
-# item_table = {
-#     **modules_item_table, **other_progression_items, **useful_items, **filler_item
-# }
+item_table = {
+    "Underground World Access": BASE_ID,
+    "Dirty World Access": BASE_ID+1,
+    "Desert World Access": BASE_ID+2,
+    "School Access": BASE_ID+3,
+    "Above the Clouds Access": BASE_ID+4,
+    "Snow World Access": BASE_ID+5,
+    "Space World Access": BASE_ID+6,
+    "Condensed Milk World Access": BASE_ID+7,
+    "Rumi's Palace Access": BASE_ID+8,
+    "Fire Hydrent World Access": BASE_ID+9,
+    "Maze World Access": BASE_ID+10,
+    "Mars Access": BASE_ID+11,
+    "Jungle World Access": BASE_ID+12,
+    "Tetris World Access": BASE_ID+13,
+    "Christmas World Access": BASE_ID+14,
+    "The Jungle Inferno Access": BASE_ID+15,
+    "Mexico Access": BASE_ID+16,
+    "Pythag World Access": BASE_ID+17,
+    "Lava World Access": BASE_ID+18,
+    "Purple Abyss Access": BASE_ID+19,
+    "The End Access": BASE_ID+20,
+    "Bridge World Access": BASE_ID+21,
+    "Jump Power-Up": BASE_ID+22,
+    "Key": BASE_ID+23,
+    "Hose": BASE_ID+24,
+    "Tyler Defeated": BASE_ID+25,
+    "House Cleaned": BASE_ID+26,
+    "Life": BASE_ID+27,
+    "Declan Power-Up": BASE_ID+28,
+}

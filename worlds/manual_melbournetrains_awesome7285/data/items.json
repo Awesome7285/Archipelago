@@ -33,7 +33,7 @@
   },
   {
     "count": 1,
-    "name": "North Melbourne Access",
+    "name": "North Melbourne and Footscray Access",
     "category": [
       "West Station Access"
     ],
@@ -176,7 +176,7 @@
     "progression": true
   },
   
-  {"name": "Bounty", "progression": true, "count": 30, "category": ["Goal"]},
+  {"name": "Bounty", "progression": true, "count": 30, "category": ["Goal"], "local": true},
 
   {"name": "Flemington Racecourse Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
   {"name": "Avalon Airport Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
@@ -196,7 +196,6 @@
   {"name": "Bairnsdale Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
   {"name": "Stony Point Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
   {"name": "Metro Tunnel Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
-  {"name": "472 Bus Access", "trap": true, "count": 1, "category": ["Filler Transport"]},
   {"name": "Tram Route 1 Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
   {"name": "Tram Route 3 Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
   {"name": "Tram Route 3a Access", "filler": true, "count": 1, "category": ["Filler Transport"]},
