@@ -1,0 +1,11 @@
+{
+  "game": "mwmm",
+  "creator": "theburger",
+  "filler_item_name": "A Responsible Vote",
+  "starting_items": [    
+  {
+    "item_categories": ["Era"],
+    "random": 1
+  }
+]
+}
