@@ -1,0 +1,11 @@
+{
+  "game": "DeltaruneMusic",
+  "creator": "Snolid",
+  "filler_item_name": "CD Bagel",
+  "starting_items": [  
+        {
+            "items": ["Chapter 1", "Chapter 2","Chapter 3","Chapter 4"],
+            "random": 1
+        }
+  ]
+}
