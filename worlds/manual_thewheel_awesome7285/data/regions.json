@@ -1,0 +1,23 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+    "Spin 1": {
+        "starting": true,
+        "requires": "|SPIN THE WHEEL:1|"
+    },
+    "Spin 2": {
+        "starting": true,
+        "requires": "|SPIN THE WHEEL:2|"
+    },
+    "Spin 3": {
+        "starting": true,
+        "requires": "|SPIN THE WHEEL:3|"
+    },
+    "Spin 4": {
+        "starting": true,
+        "requires": "|SPIN THE WHEEL:4|"
+    },
+    "Spin 5": {
+        "starting": true,
+        "requires": "|SPIN THE WHEEL:5|"
+    }
+}

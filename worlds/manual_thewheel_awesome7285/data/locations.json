@@ -1,0 +1,51 @@
+{
+	"$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
+    "data": [
+        {
+            "name": "WHEEL SPIN 1",
+            "region": "Spin 1"
+        },
+        {
+            "name": "Rank Game 1",
+            "region": "Spin 1"
+        },
+        {
+            "name": "WHEEL SPIN 2",
+            "region": "Spin 2"
+        },
+        {
+            "name": "Rank Game 2",
+            "region": "Spin 2"
+        },
+        {
+            "name": "WHEEL SPIN 3",
+            "region": "Spin 3"
+        },
+        {
+            "name": "Rank Game 3",
+            "region": "Spin 3"
+        },
+        {
+            "name": "WHEEL SPIN 4",
+            "region": "Spin 4"
+        },
+        {
+            "name": "Rank Game 4",
+            "region": "Spin 4"
+        },
+        {
+            "name": "WHEEL SPIN 5",
+            "region": "Spin 5"
+        },
+        {
+            "name": "Rank Game 5",
+            "region": "Spin 5"
+        },
+        {
+            "name": "Defeat Perfect Chaos",
+            "region": "Spin 5",
+            "victory": true
+        }
+    ]
+}
+

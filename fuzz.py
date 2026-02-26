@@ -675,4 +675,4 @@ if __name__ == "__main__":
 
         sys.exit((FAILURE + TIMEOUTS) != 0)
 
-# python3 fuzz.py -r 100 -j 16 -g manual__awesome7285 -n 1
+# python fuzz.py -r 100 -j 16 -g manual__awesome7285 -n 1

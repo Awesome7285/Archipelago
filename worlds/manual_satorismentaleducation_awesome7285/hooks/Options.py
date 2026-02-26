@@ -1,5 +1,5 @@
 # Object classes from AP that represent different types of options that you can create
-from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, OptionSet, PerGameCommonOptions
+from Options import Option, FreeText, NumericOption, Toggle, DefaultOnToggle, Choice, TextChoice, Range, NamedRange, OptionGroup, PerGameCommonOptions
 # These helper methods allow you to determine if an option has been set, or what its value is, for any player in the multiworld
 from ..Helpers import is_option_enabled, get_option_value
 from typing import Type, Any
@@ -21,51 +21,32 @@ from typing import Type, Any
 # Then, to see if the option is set, you can call is_option_enabled or get_option_value.
 #####################################################################
 
-class EnablePC98(Toggle):
-    """Adds the PC-98 games' tracks as locations."""
+
+# To add an option, use the before_options_defined hook below and something like this:
+#   options["total_characters_to_win_with"] = TotalCharactersToWinWith
+#
+# class TotalCharactersToWinWith(Range):
+#     """Instead of having to beat the game with all characters, you can limit locations to a subset of character victory locations."""
+#     display_name = "Number of characters to beat the game with before victory"
+#     range_start = 10
+#     range_end = 50
+#     default = 50
+
+class StartingLevels(Range):
+    """Determine how many levels you start with."""
+    range_start = 1
+    range_end = 10
+    default = 3
+
+class IncludeEpicStage(Toggle):
+    """Adds epic stage as an item/location in the multiworld."""
     default = True
 
-class EnableWindowsGen1(Toggle):
-    """Adds the first generation of windows games' tracks as locations. (2002-2006)
-    Includes: EoSD, DiPP, PCB, GFC, IaMP, IN, CoSD, BAiJR, PoFV, StB, R53M, MA and PMiSS."""
-    default = True
-
-class EnableWindowsGen2(Toggle):
-    """Adds the second generation of windows games' tracks as locations. (2007-2013)
-    Includes: MoF, EaLND, SaBND, SSiB, SWR, SA, GoM, UFO, UNL, DS, OSP, GFW, UFMJ, TD, TGA, NToJ and HM."""
-    default = True
-
-class EnableWindowsGen3(Toggle):
-    """Adds the third generation of windows games' tracks as locations. (2013-2018)
-    Includes: DDC, ISC, ULiL, LoLK, DLFR, DBOA, FS, AoCF, HSiFS and VD."""
-    default = True
-
-class EnableWindowsGen4(Toggle):
-    """Adds the fourth generation of windows games' tracks as locations. (2019-present)
-    Includes: WBaWC, SFW, UM, RCS, HBM, UDoALG, TJD and FW."""
-    default = True
-
-class EnableAUSExclusives(Toggle):
-    """Adds PC-98 tracks that are exclusive to Akyuu's Untouched Score as locations.
-    Has no effect if PC-98 is disabled."""
-    default = True
-
-class EnableSpiritWorld(Toggle):
-    """Adds Ten Desires' Spirit World tracks as locations.
-    Has no effect if Ten Desires is disabled."""
-    default = True
-
-class EnableStupidFiller(Toggle):
-    """"""
-    default = False
-
-class EnabledAlbums(OptionSet):
-    """"""
-    default = True
 
 # This is called before any manual options are defined, in case you want to define your own with a clean slate or let Manual define over them
 def before_options_defined(options: dict[str, Type[Option[Any]]]) -> dict[str, Type[Option[Any]]]:
-    options["enabled_albums"] = EnabledAlbums
+    options["starting_levels"] = StartingLevels
+    options["include_epic_stage"] = IncludeEpicStage
     return options
 
 # This is called after any manual options are defined, in case you want to see what options are defined or want to modify the defined options

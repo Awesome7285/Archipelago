@@ -21,9 +21,6 @@ GAME = 5
 if GAME == 5:
     TRACKER_URL = 'https://archipelago.gg/tracker/zTXgC8hWRMCIrhHX9CS66g'
     SPOILER_PATH = "C:\\ProgramData\\Archipelago\\output\\AP_32333112158762109672_Spoiler.txt"
-if GAME == 4:
-    TRACKER_URL = 'https://archipelago.gg/tracker/ObVFVnnDSm-fXzQ76EmPXw'
-    SPOILER_PATH = "C:\\ProgramData\\Archipelago\\output\\AP_33398396748978362677_Spoiler.txt"
 
 def process_table(table: Tag) -> list[dict]:
     headers = [i.string for i in table.find_all("th")]

@@ -1,0 +1,39 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+    "Level 1":{
+        "connects_to": ["Level 2", "Level 4", "Level 6", "Level 8"],
+        "requires": "",
+        "starting": true
+    },
+    "Level 2":{
+        "connects_to": ["Level 3"],
+        "requires": "|Progressive Cheat Engine:2|"
+    },
+    "Level 3":{
+        "requires": "|Glove| and |Meiling|"
+    },
+    "Level 4":{
+        "connects_to": ["Level 5"],
+        "requires": "|Progressive Cheat Engine:2|"
+    },
+    "Level 5":{
+        "requires": "(|Wing| and |Remilia|)"
+    },
+    "Level 6":{
+        "connects_to": ["Level 7"],
+        "requires": "|Progressive Cheat Engine:2| and |Patchouli| and |Grimoire|"
+    },
+    "Level 7":{
+        
+    },
+    "Level 8":{
+        "connects_to": ["Level 9", "Level 10"],
+        "requires": "|Progressive Cheat Engine:2|"
+    },
+    "Level 9":{
+        "requires": "(|Wing| and |Remilia|) or (|Boots| and |Sakuya|)"
+    },
+    "Level 10":{
+
+    }
+}

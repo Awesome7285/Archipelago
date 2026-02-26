@@ -1,0 +1,38 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.items.schema.json",
+    "data": [
+        {"name": "Glove", "category": ["Progression"], "progression": true},
+        {"name": "Booster", "category": ["Progression"], "progression": true},
+        {"name": "Grimoire", "category": ["Progression"], "progression": true},
+        {"name": "Boots", "category": ["Progression"], "progression": true},
+        {"name": "Wing", "category": ["Progression"], "progression": true},
+        {"name": "Key", "category": ["Progression"], "progression": true},
+        {"name": "Yukkuri", "category": ["Progression"], "progression": true},
+        {"name": "Progressive Cheat Engine", "category": ["Progression"], "progression": true, "count": 3},
+
+        {"name": "Meiling", "category": ["Characters"], "progression": true},
+        {"name": "Patchouli", "category": ["Characters"], "progression": true},
+        {"name": "Sakuya", "category": ["Characters"], "progression": true},
+        {"name": "Flandre", "category": ["Characters"], "progression": true},
+        {"name": "Remilia", "category": ["Characters"], "progression": true},
+
+        {"name": "Cheat Engine Coin", "category": ["Coins"], "progression": true, "count": 4},
+
+        {"name": "Cake (Small)", "category": ["Filler"], "filler": true, "count": 2},
+        {"name": "Cake (Large)", "category": ["Filler"], "filler": true, "count": 2},
+        {"name": "Red Scrap", "category": ["Filler"], "useful": true, "count": 3},
+        {"name": "Blue Scrap", "category": ["Filler"], "filler": true, "count": 3},
+        {"name": "Kawarimi", "category": ["Filler"], "filler": true},
+        {"name": "Slot", "category": ["Filler"], "useful": true},
+        {"name": "Speed Ring", "category": ["Filler"], "useful": true},
+        {"name": "Power Ring", "category": ["Filler"], "filler": true},
+        {"name": "Range Ring", "category": ["Filler"], "filler": true},
+        {"name": "Vital Ring", "category": ["Filler"], "filler": true},
+        {"name": "Yumega-Hiroga Ring", "category": ["Filler"], "filler": true},
+
+
+        {"name": "Cheat Engine - Modify Boss Health", "category": ["Progression"], "progression": true},
+        {"name": "Cheat Engine - Infinite Money", "category": ["Progression"], "useful": true},
+        {"name": "Cheat Engine - Infinite Health", "category": ["Progression"], "useful": true}
+    ]
+}

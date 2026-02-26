@@ -45,21 +45,19 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
     # Use this hook to remove locations from the world
     locationNamesToRemove: list[str] = [] # List of location names
 
-    albums = world.options.enabled_albums.value
-    all_tracks = [(name, l) for name, l in world.location_name_to_location.items() if name != "Victory"]
-    included_tracks = []
-    for album in albums:
-        included_tracks += [name for name, l in all_tracks if album in l.get('category', [])[0].split(' - ')[1]]
-    
-    locationNamesToRemove = [item[0] for item in all_tracks if item[0] not in included_tracks]
+    # Remove epic stage
+    include_epic_stage = get_option_value(multiworld, player, "include_epic_stage")
+
+    if not include_epic_stage:
+        locationNamesToRemove.append("epic stage Complete")
+
+    # Add your code here to calculate which locations to remove
 
     for region in multiworld.regions:
         if region.player == player:
             for location in list(region.locations):
                 if location.name in locationNamesToRemove:
                     region.locations.remove(location)
-
-    print([l.name for l in multiworld.get_locations()])
 
 # This hook allows you to access the item names & counts before the items are created. Use this to increase/decrease the amount of a specific item in the pool
 # Valid item_config key/values:
@@ -70,147 +68,6 @@ def after_create_regions(world: World, multiworld: MultiWorld, player: int):
 #       will create 5 items that are the "useful trap" class
 # {"Item Name": {ItemClassification.useful: 5}} <- You can also use the classification directly
 def before_create_items_all(item_config: dict[str, int|dict], world: World, multiworld: MultiWorld, player: int) -> dict[str, int|dict]:
-    fuck_this_shit = [
-        "Aya's Camera",
-        "Seija's Cheats",
-        "Sumireko's Smartphone",
-        "Occult Ball",
-        "Playstation 4",
-        "SoEW Extra Stage Unlock",
-        "EoSD Extra Stage Unlock",
-        "PCB Extra Stage Unlock",
-        "IN Extra Stage Unlock",
-        "MoF Extra Stage Unlock",
-        "SA Extra Stage Unlock",
-        "UFO Extra Stage Unlock",
-        "DDC Extra Stage Unlock",
-        "LoLK Extra Stage Unlock",
-        "HSiFS Extra Stage Unlock",
-        "WBaWC Extra Stage Unlock",
-        "UM Extra Stage Unlock",
-        "FW Extra Stage Unlock",
-        "SoEW Ending",
-        "PoDD Common Ending",
-        "PoDD Daytime Ending",
-        "EoSD Ending",
-        "PCB Ending",
-        "IaMP Ending",
-        "IN Ending",
-        "IN Last Word Unlock",
-        "PoFV Ending",
-        "MoF Ending",
-        "SWR Ending",
-        "SA Ending",
-        "UFO Ending",
-        "UNL Ending",
-        "HM Ending",
-        "DDC Ending",
-        "ULiL Ending",
-        "LoLK Ending",
-        "AoCF Ending",
-        "HSiFS Ending",
-        "WBaWC Ending",
-        "SFW Ending",
-        "UM Ending",
-        "UDoALG Ending",
-        "FW Bad Ending",
-        "FW Good Ending",
-        "Kasen Ibaraki",
-        "Sumireko Usami",
-        "Seiran",
-        "Ringo",
-        "Doremy Sweet",
-        "Sagume Kishin",
-        "Clownpiece",
-        "Junko",
-        "Hecatia Lapislazuli",
-        "Shion Yorigami",
-        "Joon Yorigami",
-        "Eternity Larva",
-        "Nemuno Sakata",
-        "Aunn Komano",
-        "Narumi Yatadera",
-        "Eika Ebisu",
-        "Urumi Ushizaki",
-        "Kutaka Niwatari",
-        "Yachie Kicchou",
-        "Mayumi Joutouguu",
-        "Keiki Haniyasushin",
-        "Saki Kurokoma",
-        "Yuuma Toutetsu",
-        "Mike Goutokuji",
-        "Takane Yamashiro",
-        "Misumaru Tamatsukuri",
-        "Tsukasa Kudamaki",
-        "Megumu Iizunamaru",
-        "Chimata Tenkyuu",
-        "Momoyo Himemushi",
-        "Son Biten",
-        "Enoko Mitsugashira",
-        "Chiyari Tenkajin",
-        "Hisami Yomotsu",
-        "Zanmu Nippaku",
-        "Ubame Chirizuka",
-        "Chimi Houjuu",
-        "Nareko Michigami",
-        "Yuiman Asama",
-        "Ariya Iwanaga",
-        "Nina Watari",
-        "Hieda no Akyuu",
-        "Watatsuki no Yorihime",
-        "Watatsuki no Toyohime",
-        "Kosuzu Motoori",
-        "Rika"
-"Meira",
-"Five Magic Stones",
-"Evil Eye Sigma",
-"Ellen",
-"Kotohime",
-"Kana Anaberal",
-"Rikako Asakura",
-"Yumemi Okazaki",
-"Chiyuri Kitashirakawa",
-"Embodiment of Scarlet Devil",
-"Perfect Cherry Blossom",
-"Immaterial and Missing Power",
-"Imperishable Night",
-"Phantasmagoria of Flower View",
-"Shoot the Bullet",
-"Mountain of Faith",
-"Scarlet Weather Rhapsody",
-"Subterranean Animism",
-"Undefined Fantastic Object",
-"Touhou Hisoutensoku",
-"Double Spoiler",
-"Hopeless Masquerade",
-"Double Dealing Character",
-"Impossible Spell Card",
-"Urban Legend in Limbo",
-"Legacy of Lunatic Kingdom",
-"Antinomy of Common Flowers",
-"Hidden Star in Four Seasons",
-"Violet Detector",
-"Wily Beast and Weakest Creature",
-"Gouyoku Ibun",
-"Unconnected Marketeers",
-"100th Black Market",
-"Unfinished Dream of All Living Ghost",
-"Fossilized Wonders",
-"Bohemian Archive in Japanese Red",
-"Perfect Memento in Strict Sense",
-"The Grimoire of Marisa",
-"Eastern and Little Nature Deity",
-"Strange and Bright Nature Deity CD1",
-"Strange and Bright Nature Deity CD2",
-"Strange and Bright Nature Deity CD3",
-"Silent Sinner in Blue",
-"Oriental Sacred Place CD1",
-"Oriental Sacred Place CD2",
-"Oriental Sacred Place CD3",
-"Forbidden Scrollery",
-    ]
-    for item in fuck_this_shit:
-        item_config[item] = 0
     return item_config
 
 # The item pool before starting items are processed, in case you want to see the raw item pool at that stage
@@ -221,6 +78,22 @@ def before_create_items_starting(item_pool: list, world: World, multiworld: Mult
 def before_create_items_filler(item_pool: list, world: World, multiworld: MultiWorld, player: int) -> list:
     # Use this hook to remove items from the item pool
     itemNamesToRemove: list[str] = [] # List of item names
+
+
+    # Starting Levels
+    starting_levels = get_option_value(multiworld, player, "starting_levels")
+
+    level_item = [i for i in item_pool if i.name == f"Progressive Level"][0]
+    
+    for i in range(starting_levels):
+        multiworld.push_precollected(level_item)
+        item_pool.remove(level_item)
+
+    # Remove epic stage
+    include_epic_stage = get_option_value(multiworld, player, "include_epic_stage")
+
+    if not include_epic_stage:
+        itemNamesToRemove.append("epic stage")
 
     # Add your code here to calculate which items to remove.
     #
@@ -259,6 +132,7 @@ def after_set_rules(world: World, multiworld: MultiWorld, player: int):
         # CollectionState is defined in BaseClasses
         return True
 
+
     ## Common functions:
     # location = world.get_location(location_name, player)
     # location.access_rule = Example_Rule
@@ -270,7 +144,7 @@ def after_set_rules(world: World, multiworld: MultiWorld, player: int):
     # location.access_rule = lambda state: old_rule(state) or Example_Rule(state)
 
 # The item name to create is provided before the item is created, in case you want to make changes to it
-def before_create_item(item_name: str, world: World, multiworld: MultiWorld, player: int) -> str:
+def before_create_item(item_name: str, world: World, multiworld: MultiWorld, player: int) -> str:        
     return item_name
 
 # The item that was created is provided after creation, in case you want to modify the item
