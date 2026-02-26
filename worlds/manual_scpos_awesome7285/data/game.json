@@ -1,9 +1,0 @@
-{
-    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
-    "game": "SCPOS",
-    "creator": "Awesome7285",
-    "filler_item_name": "1 Coin",
-    "starting_items": [
-
-    ]
-}
