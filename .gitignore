@@ -21,6 +21,8 @@ worlds/Mashup-Week-Megamix-Manual-for-AP
 sm64hack_jsons
 fuzz_output
 
+worlds/
+
 datapackage_export.json
 
 .idea
@@ -88,7 +90,10 @@ Output Logs/
 /installdelete.iss
 /data/user.kv
 /datapackage
+/datapackage_export.json
 /custom_worlds
+# stubgen output
+/out/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
