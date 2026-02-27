@@ -21,6 +21,8 @@ worlds/Mashup-Week-Megamix-Manual-for-AP
 sm64hack_jsons
 fuzz_output
 
+worlds/
+
 datapackage_export.json
 
 .idea
